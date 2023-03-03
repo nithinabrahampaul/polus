@@ -117,7 +117,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?php }  
 				 if($key=='subtotal') { ?>
 
-<tr><td colspan='4'>Subtotal without tax</td><td> <?php print_r($value);?></td></tr>
+<tr><td colspan='4'><b>Subtotal without tax</b></td><td> <?php print_r($value);?></td></tr>
 				<?php } 
 				 if($key=='subtotaltax') { ?>
 				 <tr class="invoice-text"><td>Apply Discount:</td><td>
@@ -127,7 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   
 </select></td>
 <td><input type="text" id="disvalue"></td><td><button onclick="applydiscount()">apply</button></td></tr>
-<tr><td colspan='4'>Subtotal with tax</td><td> <input type= "text" value=<?php print_r($value);?> id="dis"></td></tr>
+<tr><td colspan='4'><b>Subtotal with tax</b></td><td> <input type="hidden" id="total" value = "<?php print_r($value);?>"><span id="dis"> <?php print_r($value);?> </span></td></tr>
 				<?php } ?>
 				
 					<?php endforeach;?>
@@ -204,7 +204,7 @@ function add_item()
 function applydiscount()
 {
 	var percentage=$('#percentage').val();
-	var dis=$('#dis').val();
+	var dis=$('#total').val();
 	var disvalue=$('#disvalue').val();
 	var dvalue=dis;
 	if(percentage==0)
@@ -215,6 +215,6 @@ function applydiscount()
 	{
 		dvalue=dis-disvalue;
 	}
-	$('#dis').val(dvalue);
+	$('#dis').text(dvalue);
 }
 </script>
